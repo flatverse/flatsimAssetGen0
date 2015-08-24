@@ -6,7 +6,9 @@ namespace flatsim.AssetGen2D
     {
         static void Main(string[] args)
         {
-            SurfaceDrawer.drawFlat(@"F:\0contents\downloads\omg.png");
+            DrawArgs dArgs = new DrawArgs();
+
+            SurfaceDrawer.drawFlat(@"F:\0contents\downloads\omg.png", dArgs);
         }
     }
 }
