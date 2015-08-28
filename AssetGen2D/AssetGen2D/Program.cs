@@ -8,7 +8,12 @@ namespace flatsim.AssetGen2D
         {
             DrawArgs dArgs = new DrawArgs();
 
-            SurfaceDrawer.drawFlat(@"F:\0contents\downloads\omg.png", dArgs);
+            SurfaceDrawer.drawFlat(dArgs);
+
+            if (args.Length > 0)
+            {
+                dArgs.getAsset().saveAsPng(args[0]);
+            }
         }
     }
 }

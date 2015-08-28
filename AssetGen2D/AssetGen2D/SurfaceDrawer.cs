@@ -6,12 +6,11 @@ namespace flatsim.AssetGen2D
 {
     public static class SurfaceDrawer
     {
-        public static void drawFlat(string outputPath, DrawArgs drawArgs)
+        public static GraphicsAsset drawFlat(DrawArgs drawArgs)
         {
-            DrawingVisual dv = new DrawingVisual();
-            DrawingContext dc = dv.RenderOpen();
+            GraphicsAsset ga = drawArgs.getAsset();
+            DrawingContext dc = ga.renderOpen();
 
-            //dc.DrawRectangle(Brushes.BurlyWood, pen, new Rect(100, 100, 100, 100));
             int height = (int)Math.Round((double)drawArgs.tileWidth / Math.Sqrt(3));
 
             int halfWidth = drawArgs.tileWidth / 2;
@@ -29,9 +28,9 @@ namespace flatsim.AssetGen2D
             PathGeometry geo = new PathGeometry(new PathFigure[] {new PathFigure(start, segments, true)});
             dc.DrawGeometry(drawArgs.getBaseBrush(), drawArgs.getBorderPen(), geo);
 
-            dc.Close();
+            ga.renderClose(dc, drawArgs.tileWidth, height);
 
-            ImageUtils.SaveVisualAsPng(drawArgs.tileWidth, height, drawArgs.dpiX, drawArgs.dpiY, dv, outputPath);
+            return ga;
         }
     }
 }
