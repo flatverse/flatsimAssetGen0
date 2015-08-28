@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="GraphicsAsset.cs" />
     <Compile Include="drawArgs.cs" />
-    <Compile Include="ImageUtils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SlopeEnums.cs" />
