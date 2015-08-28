@@ -14,18 +14,29 @@ namespace flatsim.AssetGen2D
         public int dpiY = 96;
 
         DrawingVisual drawingVisual;
+        DrawingContext drawingContext;
 
         public GraphicsAsset()
         {
             drawingVisual = new DrawingVisual();
         }
 
-        public DrawingContext renderOpen()
+        public DrawingContext getContext()
         {
-            return drawingVisual.RenderOpen();
+            return drawingContext;
         }
 
-        public void renderClose(DrawingContext dc, int width, int height)
+        public void renderOpen()
+        {
+            if (drawingContext != null)
+            {
+                throw new Exception("renderOpen was called again before renderClose");
+            }
+
+            drawingContext = drawingVisual.RenderOpen();
+        }
+
+        public void adjustDimensions(int width, int height)
         {
             if (width > this.width)
             {
@@ -35,8 +46,17 @@ namespace flatsim.AssetGen2D
             {
                 this.height = height;
             }
+        }
 
-            dc.Close();
+        public void renderClose()
+        {
+            if (drawingContext == null)
+            {
+                throw new Exception("renderClose was called before renderOpen");
+            }
+
+            drawingContext.Close();
+            drawingContext = null;
         }
 
         public void saveAsPng(string outputPath)

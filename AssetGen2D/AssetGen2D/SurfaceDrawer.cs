@@ -6,10 +6,10 @@ namespace flatsim.AssetGen2D
 {
     public static class SurfaceDrawer
     {
-        public static GraphicsAsset drawFlat(DrawArgs drawArgs)
+        public static void drawFlat(DrawArgs drawArgs)
         {
-            GraphicsAsset ga = drawArgs.getAsset();
-            DrawingContext dc = ga.renderOpen();
+            GraphicsAsset ga = drawArgs.asset;
+            DrawingContext dc = ga.getContext();
 
             int height = (int)Math.Round((double)drawArgs.tileWidth / Math.Sqrt(3));
 
@@ -28,9 +28,7 @@ namespace flatsim.AssetGen2D
             PathGeometry geo = new PathGeometry(new PathFigure[] {new PathFigure(start, segments, true)});
             dc.DrawGeometry(drawArgs.getBaseBrush(), drawArgs.getBorderPen(), geo);
 
-            ga.renderClose(dc, drawArgs.tileWidth, height);
-
-            return ga;
+            ga.adjustDimensions(drawArgs.tileWidth, height);
         }
     }
 }

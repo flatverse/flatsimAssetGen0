@@ -19,6 +19,11 @@ namespace flatsim.AssetGen2D
         public int dpiX = 96;
         public int dpiY = 96;
 
+        public DrawArgs()
+        {
+            asset = new GraphicsAsset();
+        }
+
         public Pen getBorderPen()
         {
             return new Pen(new SolidColorBrush(borderColor), borderWidth);
@@ -29,14 +34,5 @@ namespace flatsim.AssetGen2D
             return new SolidColorBrush(baseColor);
         }
 
-        public GraphicsAsset getAsset()
-        {
-            if (asset == null)
-            {
-                asset = new GraphicsAsset();
-            }
-
-            return asset;
-        }
     }
 }
