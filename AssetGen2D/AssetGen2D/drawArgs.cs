@@ -8,6 +8,8 @@ namespace flatsim.AssetGen2D
         public Color baseColor = Colors.DarkGreen;
         public Color borderColor = Colors.DarkGray;
 
+        public GraphicsAsset asset;
+
         public int tileWidth = 128;
         public int borderWidth = 1;
 
@@ -25,6 +27,16 @@ namespace flatsim.AssetGen2D
         public Brush getBaseBrush()
         {
             return new SolidColorBrush(baseColor);
+        }
+
+        public GraphicsAsset getAsset()
+        {
+            if (asset == null)
+            {
+                asset = new GraphicsAsset();
+            }
+
+            return asset;
         }
     }
 }
