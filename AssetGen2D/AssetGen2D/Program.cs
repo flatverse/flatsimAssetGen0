@@ -8,13 +8,13 @@ namespace flatsim.AssetGen2D
         static void Main(string[] args)
         {
             DrawArgs dArgs = new DrawArgs();
+            dArgs.borderWidth = 0;
             dArgs.asset.renderOpen();
 
             SurfaceDrawer.drawFlat(dArgs);
 
-            dArgs.tileWidth = 64;
             dArgs.baseColor = Color.FromArgb(128, 255, 128, 128);
-            SurfaceDrawer.drawFlat(dArgs);
+            SurfaceDrawer.drawFullFacingBottom(dArgs);
 
             dArgs.asset.renderClose();
 

@@ -34,5 +34,9 @@ namespace flatsim.AssetGen2D
             return new SolidColorBrush(baseColor);
         }
 
+        public int getFlatTileHeight()
+        {
+            return (int)Math.Round((double)tileWidth / Math.Sqrt(3));
+        }
     }
 }
