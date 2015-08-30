@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -36,7 +37,7 @@ namespace flatsim.AssetGen2D
             drawingContext = drawingVisual.RenderOpen();
         }
 
-        public void adjustDimensions(int width, int height)
+        public void expandDimensions(int width, int height)
         {
             if (width > this.width)
             {
@@ -74,6 +75,29 @@ namespace flatsim.AssetGen2D
             using (Stream stm = File.Create(outputPath))
             {
                 png.Save(stm);
+            }
+        }
+
+        /*
+         * draw methods
+         */
+        public void drawPolygon(Brush baseBrush, Pen borderPen, Point[] points, bool expandToFit)
+        {
+            LineSegment[] segs = new LineSegment[]
+            {
+                new LineSegment(points[1], true),
+                new LineSegment(points[2], true),
+                new LineSegment(points[3], true)
+            };
+            PathGeometry geo = new PathGeometry(new PathFigure[] { new PathFigure(points[0], segs, true) });
+            getContext().DrawGeometry(baseBrush, borderPen, geo);
+
+            if (expandToFit)
+            {
+                foreach (Point p in points)
+                {
+                    expandDimensions((int)Math.Round(p.X), (int)Math.Round(p.Y));
+                }
             }
         }
     }

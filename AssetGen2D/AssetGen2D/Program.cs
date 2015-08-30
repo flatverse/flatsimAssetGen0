@@ -13,7 +13,7 @@ namespace flatsim.AssetGen2D
 
             SurfaceDrawer.drawFlat(dArgs);
 
-            dArgs.baseColor = Color.FromArgb(128, 255, 128, 128);
+            dArgs.baseColor = Color.FromArgb(0xff, (byte)(dArgs.baseColor.R + 0xf), (byte)(dArgs.baseColor.G + 0xf), (byte)(dArgs.baseColor.B + 0xf));
             SurfaceDrawer.drawFullFacingBottom(dArgs);
 
             dArgs.asset.renderClose();
