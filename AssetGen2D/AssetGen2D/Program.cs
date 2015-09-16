@@ -16,6 +16,12 @@ namespace flatsim.AssetGen2D
             dArgs.baseColor = Color.FromArgb(0xff, (byte)(dArgs.baseColor.R + 0xf), (byte)(dArgs.baseColor.G + 0xf), (byte)(dArgs.baseColor.B + 0xf));
             SurfaceDrawer.drawFullFacingBottom(dArgs);
 
+            dArgs.baseColor = Colors.SaddleBrown;
+            FaceDrawer.drawLeftFlat(dArgs);
+
+            dArgs.baseColor = Colors.HotPink;
+            FaceDrawer.drawRightFlat(dArgs);
+
             dArgs.asset.renderClose();
 
             if (args.Length > 0)
