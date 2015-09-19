@@ -22,6 +22,18 @@ namespace flatsim.AssetGen2D
             dArgs.baseColor = Colors.HotPink;
             FaceDrawer.drawRightFlat(dArgs);
 
+            dArgs.baseColor = Colors.Aqua;
+            FaceDrawer.drawLeftCornerUp(dArgs);
+
+            dArgs.baseColor = Colors.Firebrick;
+            FaceDrawer.drawMiddleCornerUpLeft(dArgs);
+
+            dArgs.baseColor = Colors.MediumPurple;
+            FaceDrawer.drawMiddleCornerUpRight(dArgs);
+
+            dArgs.baseColor = Colors.Turquoise;
+            FaceDrawer.drawRightCornerUp(dArgs);
+
             dArgs.asset.renderClose();
 
             if (args.Length > 0)

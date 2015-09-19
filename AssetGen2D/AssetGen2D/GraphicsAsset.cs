@@ -83,12 +83,16 @@ namespace flatsim.AssetGen2D
          */
         public void drawPolygon(Brush baseBrush, Pen borderPen, Point[] points, bool expandToFit)
         {
-            LineSegment[] segs = new LineSegment[]
+            if (points.Length < 3)
             {
-                new LineSegment(points[1], true),
-                new LineSegment(points[2], true),
-                new LineSegment(points[3], true)
-            };
+                return;
+            }
+
+            LineSegment[] segs = new LineSegment[points.Length - 1];
+            for (int i = 1; i < points.Length; i++)
+            {
+                segs[i - 1] = new LineSegment(points[i], true);
+            }
             PathGeometry geo = new PathGeometry(new PathFigure[] { new PathFigure(points[0], segs, true) });
             getContext().DrawGeometry(baseBrush, borderPen, geo);
 
